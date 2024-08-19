@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpStockApp.Domain", "HelpStockApp.Domain\HelpStockApp.Domain.csproj", "{9E9836E0-D931-4724-BB88-75B4F1B2A52F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E9836E0-D931-4724-BB88-75B4F1B2A52F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9836E0-D931-4724-BB88-75B4F1B2A52F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9836E0-D931-4724-BB88-75B4F1B2A52F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9836E0-D931-4724-BB88-75B4F1B2A52F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {332055FF-A5CD-4C1D-8B4E-E9FEEFDF00C3}
+	EndGlobalSection
+EndGlobal
