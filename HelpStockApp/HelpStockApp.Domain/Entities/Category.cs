@@ -14,6 +14,8 @@ namespace HelpStockApp.Domain.Entities
         public Category(int id, string name)
         {
             DomainExeceptionValidation.When(id < 0, "Invalid Id value");
+            DomainExeceptionValidation.When(id.GetType() == typeof(string), "Invalid Id, int type required!");
+            DomainExeceptionValidation.When(id < 0, "Invalid Id value");
             Id = id;
             ValidateDomain(name);
         }

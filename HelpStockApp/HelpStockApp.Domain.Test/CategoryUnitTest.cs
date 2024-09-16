@@ -3,6 +3,8 @@ using FluentAssertions;
 using Xunit;
 using HelpStockApp.Domain.Validation;
 using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
+using System.Reflection;
 
 namespace HelpStockApp.Domain.Test
 {
@@ -15,6 +17,13 @@ namespace HelpStockApp.Domain.Test
             Action action = () => new Category(1, "Category name");
             action.Should().NotThrow<DomainExeceptionValidation>();
         }
+
+        [Fact(DisplayName = "Create Category With Name Parameter Alone")]
+        public void CreateCategory_WithNameAloneParameters_ResultException()
+        {
+            Action action = () => new Category("Eletronics");
+            action.Should().NotThrow<DomainExeceptionValidation>();
+        }
         #endregion
 
         #region Testes Negativos de Categoria
@@ -24,6 +33,30 @@ namespace HelpStockApp.Domain.Test
             Action action = () => new Category(-1, "Eletronics");
             action.Should().Throw<DomainExeceptionValidation>()
                 .WithMessage("Invalid Id value");
+        }
+
+        [Fact(DisplayName = "Create Category With Name Too Short")]
+        public void CreateCategory_WithNameTooShortParameter_ResultException()
+        {
+            Action action = () => new Category(1, "AB");
+            action.Should().Throw<DomainExeceptionValidation>()
+                .WithMessage("Invalid name, too short. Minimum 3 characters!");
+        }
+
+        [Fact(DisplayName = "Create Category With Name Null")]
+        public void CreateCategory_WithNameNullParameter_ResultException()
+        {
+            Action action = () => new Category(1, null);
+            action.Should().Throw<DomainExeceptionValidation>()
+                .WithMessage("Invalid name, name is required!");
+        }
+
+        [Fact(DisplayName = "Create Category With Name Missing")]
+        public void CreateCategory_WithNameMissingParameter_ResultException()
+        {
+            Action action = () => new Category(1, "");
+            action.Should().Throw<DomainExeceptionValidation>()
+                .WithMessage("Invalid name, name is required!");
         }
 
         #endregion
