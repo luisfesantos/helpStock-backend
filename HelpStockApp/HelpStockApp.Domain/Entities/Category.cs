@@ -6,26 +6,24 @@ namespace HelpStockApp.Domain.Entities
     {
         public string Name { get; set; }
 
-        public Category(string name) 
+        public Category(string name)
         {
             ValidateDomain(name);
         }
 
         public Category(int id, string name)
         {
-            DomainExeceptionValidation.When(id < 0, "Invalid Id value");
-            DomainExeceptionValidation.When(id.GetType() == typeof(string), "Invalid Id, int type required!");
-            DomainExeceptionValidation.When(id < 0, "Invalid Id value");
+            DomainExceptionValidation.When(id < 0, "Invalid Id value.");
             Id = id;
             ValidateDomain(name);
         }
 
         public ICollection<Product> Products { get; set; }
 
-        private void ValidateDomain(string name) 
+        private void ValidateDomain(string name)
         {
-            DomainExeceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name, name is required!");
-            DomainExeceptionValidation.When(name.Length < 3, "Invalid name, too short. Minimum 3 characters!");
+            DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name, name is required!");
+            DomainExceptionValidation.When(name.Length < 3, "Invalid name, too short. minimum 3 characters!");
 
             Name = name;
         }

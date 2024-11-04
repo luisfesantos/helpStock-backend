@@ -1,17 +1,14 @@
 ﻿namespace HelpStockApp.Domain.Validation
 {
-    public class DomainExeceptionValidation : Exception
+    public class DomainExceptionValidation : Exception
     {
-        public DomainExeceptionValidation(string error) : base(error)
-        {
-        }
+        public DomainExceptionValidation(string error) : base(error)
+        { }
 
-        public static void When(bool hasError, string error) 
+        public static void When(bool hasError, string error)
         {
             if (hasError)
-            {
-                throw new DomainExeceptionValidation(error);
-            }
+                throw new DomainExceptionValidation(error);
         }
     }
 }
