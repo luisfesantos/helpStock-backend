@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using HelpStockApp.Domain.Entities;
+using FluentAssertions;
 using HelpStockApp.Domain.Entities;
 using HelpStockApp.Domain.Validation;
 using Xunit;
@@ -9,11 +10,19 @@ namespace HelpStockApp.Domain.Test
     #region Testes Positivos de Categoria
     public class ProductUnitTest
     {
+        #region Testes Positivos de Categoria
         [Fact(DisplayName = "Create Product With Valid State")]
         public void CreateProduct_WithValidParemeters_ResultObejectsValidState()
         {
             Action action = () => new Product("Placa Mãe", "Placa mãe Asrock steel legend am4", 600, 3, "http://surl.li/ycatry");
             action.Should().NotThrow<DomainExceptionValidation>();
+        }
+
+        [Fact(DisplayName = "Create Product With Image Null")]
+        public void CreateProduct_WithImageNullParameter_ResultException()
+        {
+            Action action = () => new Product(1, "Product name", "lalala", 10, 1, null);
+            action.Should().NotThrow<DomainExeceptionValidation>();
         }
         #endregion
 
@@ -105,8 +114,21 @@ namespace HelpStockApp.Domain.Test
             Action action = () => new Product(1, "Placa Mãe", "Pla", 600, 3, imageUrl);
             action.Should().Throw<DomainExceptionValidation>().WithMessage("Invalid name, too short. minimum 5 characters!");
 
+        [Fact(DisplayName = "Create Product With Description Too Short")]
+        public void CreateProduct_WithDescriptionTooShortParameter_ResultException()
+        {
+            Action action = () => new Product(1, "Product Name", "Bolo", 10, 1, "Image");
+            action.Should().Throw<DomainExeceptionValidation>()
+                .WithMessage("Invalid description, too short. minimum 5 characters!");
         }
 
+        [Fact(DisplayName = "Create Product With Description Invalid")]
+        public void CreateProduct_WithDescriptionInvalidParameter_ResultException()
+        {
+            Action action = () => new Product(1, "Product Name", "", 10, 1, "Image");
+            action.Should().Throw<DomainExeceptionValidation>()
+                .WithMessage("Invalid description, description is required!");
+        }
+        #endregion
     }
-    #endregion
 }
