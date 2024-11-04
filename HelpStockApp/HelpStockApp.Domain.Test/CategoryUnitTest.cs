@@ -15,14 +15,14 @@ namespace HelpStockApp.Domain.Test
         public void CreateCategory_WithValidParameters_ResultObjectsValidState()
         {
             Action action = () => new Category(1, "Category name");
-            action.Should().NotThrow<DomainExeceptionValidation>();
+            action.Should().NotThrow<DomainExceptionValidation>();
         }
 
         [Fact(DisplayName = "Create Category With Name Parameter Alone")]
         public void CreateCategory_WithNameAloneParameters_ResultException()
         {
             Action action = () => new Category("Eletronics");
-            action.Should().NotThrow<DomainExeceptionValidation>();
+            action.Should().NotThrow<DomainExceptionValidation>();
         }
         #endregion
 
@@ -31,7 +31,7 @@ namespace HelpStockApp.Domain.Test
         public void CreateCategory_WithInvalidParameters_ResultException()
         {
             Action action = () => new Category(-1, "Eletronics");
-            action.Should().Throw<DomainExeceptionValidation>()
+            action.Should().Throw<DomainExceptionValidation>()
                 .WithMessage("Invalid Id value");
         }
 
@@ -39,7 +39,7 @@ namespace HelpStockApp.Domain.Test
         public void CreateCategory_WithNameTooShortParameter_ResultException()
         {
             Action action = () => new Category(1, "AB");
-            action.Should().Throw<DomainExeceptionValidation>()
+            action.Should().Throw<DomainExceptionValidation>()
                 .WithMessage("Invalid name, too short. Minimum 3 characters!");
         }
 
@@ -47,7 +47,7 @@ namespace HelpStockApp.Domain.Test
         public void CreateCategory_WithNameNullParameter_ResultException()
         {
             Action action = () => new Category(1, null);
-            action.Should().Throw<DomainExeceptionValidation>()
+            action.Should().Throw<DomainExceptionValidation>()
                 .WithMessage("Invalid name, name is required!");
         }
 
@@ -55,7 +55,7 @@ namespace HelpStockApp.Domain.Test
         public void CreateCategory_WithNameMissingParameter_ResultException()
         {
             Action action = () => new Category(1, "");
-            action.Should().Throw<DomainExeceptionValidation>()
+            action.Should().Throw<DomainExceptionValidation>()
                 .WithMessage("Invalid name, name is required!");
         }
 
