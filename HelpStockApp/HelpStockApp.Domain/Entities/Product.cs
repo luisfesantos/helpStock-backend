@@ -22,6 +22,7 @@ namespace HelpStockApp.Domain.Entities
             ValidateDomain(name, description, price, stock, image);
         }
 
+
         private void ValidateDomain(string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(price < 0, "Invalid Price, price negative value is unlikely!");
@@ -38,6 +39,7 @@ namespace HelpStockApp.Domain.Entities
             Price = price;
             Stock = stock;
             Image = image;
+
         }
         public int CategoryId { get; set; }
         public Category Category { get; set; }

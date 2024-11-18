@@ -2,8 +2,7 @@
 
 namespace HelpStockApp.Application.Interfaces
 {
-    public interface IProductService
-    {
+
         public interface IProductService
         {
             Task<IEnumerable<ProductDTO>> GetProducts();
@@ -12,5 +11,4 @@ namespace HelpStockApp.Application.Interfaces
             Task Update(ProductDTO productDto);
             Task Remove(int? id);
         }
-    }
 }
